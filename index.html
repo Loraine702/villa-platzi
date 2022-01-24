@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=no">
+  <meta name="google-site-verification" content="Zwo5pWkKhzf1vVv0vckr87iSRXzOgmbgAiW7prZI4GI" />
+  <title>Villa Platzi</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/JLCareglio/VillaPlatzi/master/otros/platzi_favicon.png" />
+  <link rel="icon" sizes="192x192" href="https://raw.githubusercontent.com/JLCareglio/VillaPlatzi/master/otros/platzi_favicon.png">
+</head>
+
+<body>
+  <div class="grid-container unselectable">
+    <header class="header">
+      <h1 id="nombreJuego">Villa Platzi</h1>
+    </header>
+    <div class="about" id="about">
+      <h2>Informacion</h2>
+      <p>
+        Este juego llamado Villa Platzi es un pequeño experimento creado usando HTML5, CSS y JavaScript sin librerias externas o frameworks.<br>
+        Mira el <a href="https://github.com/Loraine702" target="_blank" rel="noopener noreferrer">Código fuente</a>
+      </p>
+      <h2>Hazlo tu mismo</h2>
+      <p>
+        Puedes aprender las bases para hacer una página como ésta con el Curso Gratis de Programación Básica: <br>
+        <a href="https://platzi.com/cursos/programacion-basica/" target="_blank" rel="noopener noreferrer">Temario Completo</a>
+        &
+        <a href="https://platzi.com/clases/programacion-basica/" target="_blank" rel="noopener noreferrer">Clases del Curso</a><br>
+      </p>
+     
+      </p>
+      <h2>Créditos & Agradecimientos</h2>
+      <p>
+        Recursos gráficos extraídos de: <a href="https://platzi.com/clases/1050-programacion-basica/5123-uso-y-carga-de-imagenes-en-canvas/" target="_blank" rel="noopener noreferrer">ésta clase</a>.<br>
+        Autor de esta página: <a href="https://platzi.com/comentario/1673893/" target="_blank" rel="noopener noreferrer">Loraine Badillo</a>.
+      <p>
+      <button class="ajuste" style="font-size: 30px; width: 80px;"onclick="location.href = 'index.html#nombreJuego';">
+        🔝
+      </button>
+      </button>
+    </div>
+    <div class="canvasJuego" id="canvasJuego">
+      <canvas width="500px" height="500px" id="villaPlatzi"></canvas>
+    </div>
+
+    <div class="mensajes" id="mensajes" onclick="location.href='index.html#mensajes';">
+      <p class="mensaje" id="mensaje">
+        🏞️ Tú eres el cerdito 🐖<br>Tienes que llegar rápido al gallinero 🐔🏚️ y antes que el lobo 🐺.<br><br>🐾 ¡Salva las gallinas de sus garras! 🐾
+      </p>
+      <p class="final" id="final">
+        Usa ↕️↔️ para moverte.
+      </p>
+    </div>
+
+    <button class="btn orange" type="reset" onclick="reiniciarJuego()" id="btnReset">
+      <span>Reiniciar Juego</span>
+    </button>
+
+    <div class="options" id="options">
+      <button class="ajuste" style="font-size: 30px; width: 50px;" onclick="window.open('https://platzi.com/p/lorainebh702/','_blank');";>
+        ❤️
+      </button>
+      <label class="ajuste">
+        <medalla id="medalla">🥉</medalla><br>
+        <div class="number">
+          <input type="text" readonly value="0/6" id="contadorFinales" min="0" max="1" step="1">
+        </div>
+      </label>
+      <label class="ajuste">
+        Música <br>
+        <div class="switch">
+          <input type="checkbox" checked id="optionMusic" onclick="playPauseMusic()">
+          <span class="slider round"></span>
+        </div>
+      </label>
+      <label class="ajuste">
+        Botones <br>
+        <div class="switch">
+          <input type="checkbox" checked id="optionShowButtons" onclick="showHideButtons()">
+          <span class="slider round"></span>
+        </div>
+      </label>
+      <label class="ajuste">
+        🐄🐄<br>
+        <div class="number">
+          <input type="number" value="7" id="cantVacas" min="0" max="91" step="1">
+        </div>
+      </label>
+      <label class="ajuste">
+        🐔🐔<br>
+        <div class="number">
+          <input type="number" value="4" id="cantGallinas" min="0" max="9" step="1">
+        </div>
+      </label>
+      <button class="ajuste" style="font-size: 30px; width: 50px;" onclick = "location.href =
+      window.innerWidth < 900 ? 'index.html#mensajes' : 'index.html#about';">
+        ❓
+      </button>
+    </div>
+    <div class="footer">
+      <a title="GitHub" href="https://gist.github.com/Loraine702" target="_blank" rel="noopener noreferrer"><img src="iconos_svg/github.svg" alt="GitHub"/></a>
+      <a title="Linkedin" href="https://www.linkedin.com/in/loraine-badillo-hernandez-34a51b209/" target="_blank" rel="noopener noreferrer"><img src="iconos_svg/linkedin.svg" alt="Linkedin"/></a>
+      <a title="Instagram" href="https://www.instagram.com/?hl=es-la" target="_blank" rel="noopener noreferrer"><img src="iconos_svg/instagram.svg" alt="Instagram"/></a>
+      <a title="Twitter" href="https://twitter.com/home?lang=es" target="_blank" rel="noopener noreferrer"><img src="iconos_svg/twitter.svg" alt="Twitter"/></a>
+      <a title="Email" href="https://mail.google.com/mail/u/0/?tab=wm#inbox" target="_blank" rel="noopener noreferrer"><img src="iconos_svg/email.svg" alt="Email"/></a>
+    </div>
+  </div>
+  <audio id="music" loop>
+    <source src="musica/Crusaders.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script src="script.js"></script>
+</body>
+
+</html>
